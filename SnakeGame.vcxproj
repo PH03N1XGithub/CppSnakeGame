@@ -167,42 +167,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="SnakeGame\AppleObject.h" />
-    <ClInclude Include="SnakeGame\BaseAgent.h" />
-    <ClInclude Include="SnakeGame\Game.h" />
-    <ClInclude Include="SnakeGame\GameObject.h" />
-    <ClInclude Include="SnakeGame\GameOverState.h" />
-    <ClInclude Include="SnakeGame\InGameState.h" />
-    <ClInclude Include="SnakeGame\MainMenuState.h" />
-    <ClInclude Include="SnakeGame\MultiplayerMenuState.h" />
-    <ClInclude Include="SnakeGame\PlayerAgent.h" />
-    <ClInclude Include="SnakeGame\SimpleAIAgent.h" />
-    <ClInclude Include="SnakeGame\SnakeGraphics.h" />
-    <ClInclude Include="SnakeGame\SnakeInput.h" />
-    <ClInclude Include="SnakeGame\SnakeObject.h" />
-    <ClInclude Include="SnakeGame\StateBase.h" />
-    <ClInclude Include="SnakeGame\StateMachine.h" />
-    <ClInclude Include="SnakeGame\stdafx.h" />
-    <ClInclude Include="SnakeGame\World.h" />
+    <ClInclude Include="AppleObject.h" />
+    <ClInclude Include="BaseAgent.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOverState.h" />
+    <ClInclude Include="InGameState.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="MultiplayerMenuState.h" />
+    <ClInclude Include="PlayerAgent.h" />
+    <ClInclude Include="SimpleAIAgent.h" />
+    <ClInclude Include="SnakeGraphics.h" />
+    <ClInclude Include="SnakeInput.h" />
+    <ClInclude Include="SnakeObject.h" />
+    <ClInclude Include="StateBase.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SnakeGame\AppleObject.cpp" />
-    <ClCompile Include="SnakeGame\BaseAgent.cpp" />
-    <ClCompile Include="SnakeGame\Game.cpp" />
-    <ClCompile Include="SnakeGame\GameObject.cpp" />
-    <ClCompile Include="SnakeGame\GameOverState.cpp" />
-    <ClCompile Include="SnakeGame\InGameState.cpp" />
-    <ClCompile Include="SnakeGame\MainMenuState.cpp" />
-    <ClCompile Include="SnakeGame\MultiplayerMenuState.cpp" />
-    <ClCompile Include="SnakeGame\PlayerAgent.cpp" />
-    <ClCompile Include="SnakeGame\SimpleAIAgent.cpp" />
-    <ClCompile Include="SnakeGame\SnakeGame.cpp" />
-    <ClCompile Include="SnakeGame\SnakeGraphics.cpp" />
-    <ClCompile Include="SnakeGame\SnakeInput.cpp" />
-    <ClCompile Include="SnakeGame\SnakeObject.cpp" />
-    <ClCompile Include="SnakeGame\StateBase.cpp" />
-    <ClCompile Include="SnakeGame\StateMachine.cpp" />
-    <ClCompile Include="SnakeGame\World.cpp" />
+    <ClCompile Include="AppleObject.cpp" />
+    <ClCompile Include="BaseAgent.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
+    <ClCompile Include="InGameState.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="MultiplayerMenuState.cpp" />
+    <ClCompile Include="PlayerAgent.cpp" />
+    <ClCompile Include="SimpleAIAgent.cpp" />
+    <ClCompile Include="SnakeGame.cpp" />
+    <ClCompile Include="SnakeGraphics.cpp" />
+    <ClCompile Include="SnakeInput.cpp" />
+    <ClCompile Include="SnakeObject.cpp" />
+    <ClCompile Include="StateBase.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
