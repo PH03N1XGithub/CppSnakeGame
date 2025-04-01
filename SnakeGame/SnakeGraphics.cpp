@@ -295,6 +295,7 @@ bool SnakeGraphics::UpdateWindowMessages()
 
         DispatchMessage(&msg);
     }
+    
 
     return !WindowClosed;
 }

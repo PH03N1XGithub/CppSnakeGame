@@ -3,7 +3,7 @@
 #include "InGameState.h"
 #include "MainMenuState.h"
 
-MultiplayerMenuState::MultiplayerMenuState(SnakeGraphics* graphics, StateMachine* stateMachine) : graphics(graphics), sm(stateMachine)
+MultiplayerMenuState::MultiplayerMenuState(SnakeGraphics* graphics, StateMachine* stateMachine) : graphics(graphics), m_stateMachine(stateMachine)
 {
 }
 
@@ -32,7 +32,7 @@ void MultiplayerMenuState::CleanUp()
 {
 }
 
-void MultiplayerMenuState::Update()
+void MultiplayerMenuState::Tick(float deltaTime)
 {
 }
 
@@ -78,24 +78,24 @@ void MultiplayerMenuState::KeyDown(int key)
     case VK_RETURN:
         if (menuItems[selectedMenuIndex] == L"Co-op Mode")
         {
-            sm->ChangeState(new InGameState(graphics, sm, 0, true, false));
+            m_stateMachine->ChangeState(new InGameState(graphics, m_stateMachine, 0, true, false));
         }
         else if (menuItems[selectedMenuIndex] == L"Co-op Mode with AI")
         {
-            sm->ChangeState(new InGameState(graphics, sm, 0, true, true));
+            m_stateMachine->ChangeState(new InGameState(graphics, m_stateMachine, 0, true, true));
         }
         else if (menuItems[selectedMenuIndex] == L"Battle Mode")
         {
-            sm->ChangeState(new InGameState(graphics, sm, 0, true,false));
+            m_stateMachine->ChangeState(new InGameState(graphics, m_stateMachine, 0, true,false));
         }
         else if (menuItems[selectedMenuIndex] == L"Back to Main Menu")
         {
-            sm->ChangeState(new MainMenuState(graphics, sm));
+            m_stateMachine->ChangeState(new MainMenuState(graphics, m_stateMachine));
         }
         break;
 
     case VK_ESCAPE:
-        sm->ChangeState(new MainMenuState(graphics, sm));
+        m_stateMachine->ChangeState(new MainMenuState(graphics, m_stateMachine));
         break;
 
     default:

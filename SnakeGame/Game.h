@@ -1,23 +1,26 @@
 ﻿// Game.h
 #pragma once
 
-#include "SnakeGraphics.h"
 #include "StateMachine.h"
+#include "SnakeGraphics.h"
 
 class Game
 {
 public:
-    Game();
+    Game() = default;
     ~Game();
-
-    bool Init();
     void Run();
 
+
 private:
-    void KeyDownCallback(int key);
-    
     SnakeGraphics* graphics = nullptr;
-    bool running = true;
     StateMachine stateMachine;
-    const int frameTimeMs = 16;
+private:
+    
+    bool Init();
+    void Tick(float deltaTime) const;
+    void Render() const;
+    void KeyDownCallback(int key) const;
 };
+
+

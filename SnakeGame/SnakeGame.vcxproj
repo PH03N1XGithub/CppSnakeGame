@@ -188,6 +188,7 @@
     <ClInclude Include="SnakeObject.h" />
     <ClInclude Include="StateBase.h" />
     <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

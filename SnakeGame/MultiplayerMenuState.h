@@ -1,9 +1,9 @@
 ﻿#pragma once
 #include <string>
 
-#include "SnakeGraphics.h"
 #include "StateBase.h"
 #include "StateMachine.h"
+#include "SnakeGraphics.h"
 
 enum class EMultiplayerMode
 {
@@ -19,12 +19,12 @@ public:
 
     bool Init() override;
     void CleanUp() override;
-    void Update() override;
+    void Tick(float deltaTime) override;
     void Render() override;
     void KeyDown(int key) override;
 private:
     SnakeGraphics* graphics = nullptr;
-    StateMachine* sm = nullptr;
+    StateMachine* m_stateMachine = nullptr;
     int selectedMenuIndex = 0;
     std::vector<std::wstring> menuItems;
 };

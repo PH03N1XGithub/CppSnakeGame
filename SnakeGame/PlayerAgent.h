@@ -9,6 +9,9 @@ public:
     void OnKeyPressed(int key);
 private:
     EDirection pressedDirection = EDirection::Right;
-    int upKey, downKey, leftKey, rightKey;
+    struct Key
+    {
+        int up, down, left, righ;
+    }m_Key;
     
 };

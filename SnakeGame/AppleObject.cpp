@@ -20,7 +20,7 @@ void AppleObject::Update()
 
 void AppleObject::Render(SnakeGraphics* graphics)
 {
-    graphics->PlotTile(posX, posY, 1, {255, 0, 0}, {0, 0, 0}, L' ');
+    graphics->PlotTile(posX, posY, 10, {255, 0, 0}, {0, 0, 0}, L' ');
 }
 
 void AppleObject::OnCollisionEnter(GameObject* other)

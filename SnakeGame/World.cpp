@@ -71,7 +71,7 @@ void World::Render(SnakeGraphics* graphics)
             }
             else
             {
-                graphics->PlotTile(x, y, 0,{0, 0, 0},{0, 0, 0},L' ');
+                graphics->PlotTile(x, y, 0,{15, 0, 15},{0, 0, 0},L' ');
             }
         }
     }
@@ -103,9 +103,18 @@ void World::RemoveGameObject(GameObject* obj)
 
 void World::AddScore(int amountOfScore)
 {
-    score += amountOfScore;
-    if (score == 10)
+    int foundApple = 0; 
+    for (auto a : objects)
+    {
+        AppleObject* apple = dynamic_cast<AppleObject*>(a);
+        if (apple) 
+        {
+            foundApple++;
+        }
+    }
+    if (foundApple == 1)
     {
         bLevelCompleted = true;
     }
+    score += amountOfScore;
 }

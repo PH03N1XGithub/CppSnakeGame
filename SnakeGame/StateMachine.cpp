@@ -10,7 +10,6 @@ void StateMachine::ChangeState(StateBase* newState)
     if (activeState)
     {
         activeState->CleanUp();
-        delete activeState;
         activeState = nullptr;
     }
 

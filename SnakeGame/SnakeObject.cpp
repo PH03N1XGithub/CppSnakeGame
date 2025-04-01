@@ -16,29 +16,36 @@ SnakeObject::~SnakeObject()
     
 }
 
+static struct Position
+{
+    int x;
+    int y;
+}SnakePosition;
+
 void SnakeObject::Update()
 {
-    moveCounter++;
+    moveCounter+= 0.06f;
     if (moveCounter >= moveThreshold)
     {
-        int headX = body.front().first;
-        int headY = body.front().second;
+        
+        SnakePosition.x = body.front().first;
+        SnakePosition.y = body.front().second;
         switch (direction)
         {
         case EDirection::Up:
-            headY--;
+            SnakePosition.y--;
             break;
         case EDirection::Down:
-            headY++;
+            SnakePosition.y++;
             break;
         case EDirection::Left:
-            headX--;
+            SnakePosition.x--;
             break;
         case EDirection::Right:
-            headX++;
+            SnakePosition.x++;
             break;
         }
-        body.insert(body.begin(), {headX, headY});
+        body.insert(body.begin(), {SnakePosition.x, SnakePosition.y});
         if (static_cast<int>(body.size()) > lengthOfSnake)
         {
             body.pop_back();
@@ -62,8 +69,9 @@ void SnakeObject::Render(SnakeGraphics* graphics)
 {
     for (size_t i = 0; i < body.size(); i++)
     {
-        wchar_t renderChar = (i == 0) ? L'O' : L'o';
-        graphics->PlotTile(body[i].first, body[i].second, 1, {0, 0, 0}, {0, 0, 255}, renderChar);
+        int renderChar = static_cast<int>(255 * (1.0 - static_cast<float>(i) / 10.0));
+        graphics->PlotTile(body[i].first, body[i].second, 1, {0, 255, renderChar},
+            {255, 165, 0}, L':');
     }
 }
 

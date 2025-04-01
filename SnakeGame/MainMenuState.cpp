@@ -4,8 +4,9 @@
 #include "InGameState.h"
 #include "MultiplayerMenuState.h"
 #include "StateMachine.h"
+#include "stdafx.h"
 
-MainMenuState::MainMenuState(SnakeGraphics* graphics, StateMachine* stateMachine) : graphics(graphics), sm(stateMachine)
+MainMenuState::MainMenuState(SnakeGraphics* graphics, StateMachine* stateMachine) : graphics(graphics), m_stateMachine(stateMachine)
 {
 
 }
@@ -24,8 +25,8 @@ bool MainMenuState::Init()
         }
     }
     graphics->Render();
-    menuItems.push_back(L"Start");
-    menuItems.push_back(L"Multiplayer"); 
+    menuItems.push_back(L"Play");
+    menuItems.push_back(L"CO-OP"); 
     menuItems.push_back(L"Exit");
     return true;
 }
@@ -34,33 +35,35 @@ void MainMenuState::CleanUp()
 {
 }
 
-void MainMenuState::Update()
+void MainMenuState::Tick(float deltaTime)
 {
+    deltatime = deltaTime;
 }
 
 void MainMenuState::Render()
 {
-    int centerX = graphics->GetNumColumns() / 2;
-    int centerY = graphics->GetNumRows() / 2;
-
-    for (int i = 0; i < (int)menuItems.size(); i++)
+    for (int i = 0; i < static_cast<int>(menuItems.size()); i++)
     {
         Color colorForMenu = (i == selectedMenuIndex) ? Color(255, 255, 255) : Color(128, 128, 128);
-
-        int xPos = centerX;
-        int yPos = centerY + i;
-
-        graphics->PlotText(
-            xPos,
-            yPos,
-            0,
-            {0, 0, 0},
-            menuItems[i].c_str(),
-            colorForMenu,
-            SnakeGraphics::Center
-        );
+        int a = 255;
+        graphics->PlotText(WORLD_WIDTH / 2,WORLD_HEIGHT / 2 + i,0,{0, 0, 0},
+            menuItems[i].c_str(),colorForMenu,SnakeGraphics::Center);
     }
+    
+    const float waveSpeed = 0.2f;  
+    const float frequency = 0.04f;  
+    for (int y = 0; y < WORLD_HEIGHT; y++) {
+        for (int x = 0; x < WORLD_WIDTH; x++) {
 
+            float waveValue = sinf((x + deltatime * waveSpeed) * frequency);
+            
+            int red = (int)(127 * (waveValue + 1));  
+            int green = (int)(127 * (waveValue + 1));
+            int blue = (int)(255 * (1 - waveValue));
+            
+            graphics->PlotTile(x, y, 0, {red, green, blue}, {0, 0, 0}, L' '); 
+        }
+    }
     graphics->Render();
 }
 
@@ -71,35 +74,35 @@ void MainMenuState::KeyDown(int key)
     case VK_UP:
         selectedMenuIndex--;
         if (selectedMenuIndex < 0) {
-            selectedMenuIndex = (int)menuItems.size() - 1;
+            selectedMenuIndex = static_cast<int>(menuItems.size()) - 1;
         }
         break;
 
     case VK_DOWN:
         selectedMenuIndex++;
-        if (selectedMenuIndex >= (int)menuItems.size()) {
+        if (selectedMenuIndex >= static_cast<int>(menuItems.size())) {
             selectedMenuIndex = 0;
         }
         break;
 
     case VK_RETURN:
-        if (menuItems[selectedMenuIndex] == L"Start")
+        if (menuItems[selectedMenuIndex] == L"Play")
         {
-            sm->ChangeState(new InGameState(graphics, sm,0,false,false));
+            m_stateMachine->ChangeState(new InGameState(graphics, m_stateMachine,0,false,false));
         }
-        else if (menuItems[selectedMenuIndex] == L"Multiplayer")
+        else if (menuItems[selectedMenuIndex] == L"CO-OP")
         {
-            sm->ChangeState(new MultiplayerMenuState(graphics, sm)); 
+            m_stateMachine->ChangeState(new MultiplayerMenuState(graphics, m_stateMachine)); 
         }
         else if (menuItems[selectedMenuIndex] == L"Exit")
         {
-            std::wcout << L"Quit selected\n";
+            std::wcout << L"Quit\n";
             exit(0);
         }
         break;
 
     case VK_ESCAPE:
-            sm->ChangeState(nullptr);
+            exit(0);
         break;
 
     default:
